@@ -1,0 +1,50 @@
+{
+  "name": "dsh-plan-gate",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness plugin: execution stays off until the user approves the plan and its explicit tool list.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "plan",
+    "approval",
+    "confirm",
+    "gate"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lswn/dsh-plan-gate.git"
+  },
+  "homepage": "https://github.com/Lswn/dsh-plan-gate#readme",
+  "bugs": {
+    "url": "https://github.com/Lswn/dsh-plan-gate/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node test/rules.test.mjs && node test/gate.test.mjs && node test/stress.test.mjs && node test/amend.test.mjs && node test/stress2.test.mjs"
+  }
+}

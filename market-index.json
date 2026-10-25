@@ -1,0 +1,59 @@
+{
+  "format": 1,
+  "title": {
+    "en": "dsh-plan-gate",
+    "zh-cn": "dsh-plan-gate"
+  },
+  "description": {
+    "en": "DeepSeek Harness plugin: execution stays off until the user approves the plan and its explicit tool list.",
+    "zh-cn": "DeepSeek Harness 插件：用户批准方案与其工具清单之前，执行权不在模型手里。"
+  },
+  "metadata": {
+    "categories": {
+      "workflow": {
+        "title": {
+          "en": "Workflow",
+          "zh-cn": "工作流"
+        }
+      }
+    },
+    "labels": {},
+    "sortKeys": {}
+  },
+  "plugins": [
+    {
+      "name": "dsh-plan-gate",
+      "title": {
+        "en": "Plan Gate",
+        "zh-cn": "方案闸门"
+      },
+      "description": {
+        "en": "Nothing is written, run, or fetched before the user approves a plan. Tools outside the approved list are blocked and need a separate confirmation.",
+        "zh-cn": "用户批准方案之前，不写、不跑、不联网。清单外的动作一律拦下，需要单独确认。"
+      },
+      "author": "Lswn",
+      "homepage": "https://github.com/Lswn/dsh-plan-gate#readme",
+      "repository": {
+        "url": "https://github.com/Lswn/dsh-plan-gate"
+      },
+      "metadata": {
+        "category": "workflow",
+        "keywords": [
+          "plan",
+          "approval",
+          "confirm",
+          "gate"
+        ]
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "publishTimestamp": 1792886400,
+          "source": {
+            "type": "npm"
+          }
+        }
+      ]
+    }
+  ]
+}

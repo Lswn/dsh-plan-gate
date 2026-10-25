@@ -1,0 +1,17 @@
+# Bundle layer for dsh-plan-gate.
+#
+# Configuration belongs in the profile's own cordis.patch.yml — this file is
+# replaced on upgrade:
+#
+#   - id: plan-gate
+#     name: dsh-plan-gate
+#     config:
+#       locale: zh
+#
+- insert:
+    - id: plan-gate
+      name: dsh-plan-gate
+      config:
+        locale: auto
+        exemptDelegated: false
+        debug: false
