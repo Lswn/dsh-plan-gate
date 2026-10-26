@@ -42,6 +42,24 @@ dsh plugin --profile desktop add link:"F:\path\to\dsh-plan-gate"
 
 **Restart DSH afterwards.** Host-side plugins load at boot only; editing config or source requires the same restart.
 
+## Upgrading
+
+```powershell
+dsh plugin --profile desktop add dsh-plan-gate@<version>
+```
+
+**Always pass an explicit version.** Without one, the profile holds `^old-version`, the new release falls inside that range, and pnpm keeps whatever the lockfile resolved — no upgrade happens.
+
+The version shown in the UI comes from registry metadata; the install is resolved by pnpm. They can disagree, so do not trust the UI. Check the disk instead:
+
+```
+%USERPROFILE%\.dsh\profiles\<profile>\node_modules\dsh-plan-gate\package.json
+```
+
+The upgrade succeeded when `version` is the target release and `description` has changed.
+
+There is no way for the author to force an upgrade: in the npm ecosystem an installed user must run the upgrade once themselves.
+
 ## Configuration
 
 In the profile's `cordis.patch.yml`:

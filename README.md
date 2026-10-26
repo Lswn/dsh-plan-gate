@@ -44,6 +44,24 @@ dsh plugin --profile desktop add link:"F:\path\to\dsh-plan-gate"
 
 装完**必须重启 DSH**：Host 侧插件只在启动时加载；改配置、改源码同理。
 
+## 升级
+
+```powershell
+dsh plugin --profile desktop add dsh-plan-gate@<版本号>
+```
+
+**必须带版本号。** 不带版本时，profile 里写的是 `^旧版本`，新版本落在这个范围内，pnpm 会沿用锁文件里的旧版，不会升级。
+
+界面上的版本号来自 registry 元数据，实际安装走 pnpm 解析——两者可能不一致，别只看界面。判断是否装成功，读磁盘：
+
+```
+%USERPROFILE%\.dsh\profiles\<profile>\node_modules\dsh-plan-gate\package.json
+```
+
+`version` 是目标版本、`description` 已更新，才算真的升上去了。
+
+作者无法强制客户端升级：npm 生态里，已安装的用户必须自己执行一次升级命令。
+
 ## 配置
 
 写在 profile 的 `cordis.patch.yml`：
