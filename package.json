@@ -1,7 +1,7 @@
 {
   "name": "dsh-plan-gate",
-  "version": "0.1.0",
-  "description": "DeepSeek Harness plugin: execution stays off until the user approves the plan and its explicit tool list.",
+  "version": "0.1.1",
+  "description": "Plan Gate 方案闸门：用户批准方案与工具清单之前，执行权不在模型手里。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {

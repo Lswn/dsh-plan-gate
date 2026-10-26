@@ -101,6 +101,21 @@ test('colloquial approvals are approvals', () => {
   assert.deepEqual(classifyReply('搞吧'), { kind: 'approve' })
   assert.deepEqual(classifyReply('开工吧'), { kind: 'approve' })
   assert.deepEqual(classifyReply('整吧'), { kind: 'approve' })
+  assert.deepEqual(classifyReply('改吧'), { kind: 'approve' })
+  assert.deepEqual(classifyReply('做吧'), { kind: 'approve' })
+  assert.deepEqual(classifyReply('弄吧'), { kind: 'approve' })
+})
+
+test('改 / 做 / 弄 only approve before a particle', () => {
+  assert.notEqual(classifyReply('修改一下').kind, 'approve')
+  assert.notEqual(classifyReply('做个表格').kind, 'approve')
+  assert.notEqual(classifyReply('弄个文件').kind, 'approve')
+})
+
+test('继续 is an approval too', () => {
+  assert.deepEqual(classifyReply('继续'), { kind: 'approve' })
+  assert.deepEqual(classifyReply('继续吧'), { kind: 'approve' })
+  assert.deepEqual(classifyReply('接着'), { kind: 'approve' })
 })
 
 test('acknowledgements and dialect are approvals', () => {
@@ -241,6 +256,22 @@ test('a colloquial approval executes', async () => {
   apply(h.ctx, {})
   await drafted(h)
   await h.user('收到')
+  assert.equal((await h.runPre(write('a.txt'))).kind, 'allow')
+})
+
+test('继续 executes a registered plan', async () => {
+  const h = host()
+  apply(h.ctx, {})
+  await drafted(h)
+  await h.user('继续')
+  assert.equal((await h.runPre(write('a.txt'))).kind, 'allow')
+})
+
+test('改吧 executes a registered plan', async () => {
+  const h = host()
+  apply(h.ctx, {})
+  await drafted(h)
+  await h.user('改吧')
   assert.equal((await h.runPre(write('a.txt'))).kind, 'allow')
 })
 

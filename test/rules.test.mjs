@@ -45,13 +45,14 @@ test('approval is a whole short reply and never a negation', () => {
   assert.equal(isApproval('go ahead'), true)
   assert.equal(isApproval('不同意'), false)
   assert.equal(isApproval('可以，但是先改一下第 3 步'), false)
-  assert.equal(isApproval('继续'), false)
 })
 
-test('continuation is distinct from approval', () => {
+test('继续 is an approval, not a separate state', () => {
   assert.equal(isContinuation('继续'), true)
   assert.equal(isContinuation('继续做'), true)
   assert.equal(isContinuation('同意'), false)
+  assert.equal(isApproval('继续'), true)
+  assert.equal(isApproval('继续吧'), true)
 })
 
 test('locale follows config, then the script', () => {
@@ -96,8 +97,6 @@ test('path scope matches exactly and by directory, never across path kinds', () 
   assert.equal(pathApproved('src/a.js', ['src/']), true)
   assert.equal(pathApproved('src/deep/a.js', ['src/']), true)
   assert.equal(pathApproved('other/a.js', ['src/']), false)
-  // A relative entry no longer matches an absolute call: the gate asks instead
-  // of guessing which a.js was meant.
   assert.equal(pathApproved('C:\\proj\\src\\a.js', ['src/a.js']), false)
 })
 
